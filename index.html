@@ -4,24 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Components Example</title>
-    <style>
-        h3 {
-            color: purple;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="./src/style.css">
 </head>
 <body>
-    <h1>Business Cards</h1>
-
-    <user-card name="John Doe" gender="men">
-        <p slot="email">johndoe@gmail.com</p>
-        <p slot="phone">555-555-5555</p>
-    </user-card>
-    
-    <user-card name="Jane Doe" avatar="https://randomuser.me/api/portraits/women/1.jpg">
-        <p slot="email">janedeo@gmail.com</p>
-        <p slot="phone">333-333-3333</p>
-    </user-card>
-    <script src="./js/main.js" type="module"></script>
+    <x-App></x-App>
+    <script src="./src/main.js" type="module"></script>
 </body>
 </html>

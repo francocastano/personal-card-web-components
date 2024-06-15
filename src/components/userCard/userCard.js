@@ -1,31 +1,20 @@
-import { validate } from "./utils.js";
+import { validate } from "../../validations/validations.js";
 
 const RANDOM_USER_BASE_URL = "https://randomuser.me/api/";
 
 const template = document.createElement('template')
 template.innerHTML = `
     <style>
-        :host {
-            font-family: 'Arial', sans-serif;
-            background: #f4f4f4;
-            width: 500px;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            grid-gap: 10px;
-            margin-bottom: 15px;
-            border-bottom: darkorchid 5px solid;
-        }
-
-        img {
-            width: 100%;
-        }
+        @import "src/components/userCard/userCard.css";
     </style>
     <img/>
     <section>
         <h3></h3>
         <collapsable-section show-label="Show Info" hide-label="Hide Info">
-            <div slot="content"><slot name="email"/></div>
-            <div slot="content"><slot name="phone"/></div>
+            <div slot="content">
+                <slot name="email"></slot>
+                <slot name="phone"></slot>
+            </div>
         </collapsable-section>
     </section>
 `;

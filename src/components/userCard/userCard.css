@@ -1,0 +1,13 @@
+:host {
+    background: var(--background-color);
+    width: 500px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 10px;
+    margin-bottom: 15px;
+    border-bottom: var(--accent-color) 5px solid;
+}
+
+img {
+    width: 100%;
+}

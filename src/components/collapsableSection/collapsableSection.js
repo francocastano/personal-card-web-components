@@ -1,19 +1,12 @@
-import { validate } from "./utils.js";
+import { validate } from "../../validations/validations.js";
 
 const template = document.createElement('template')
 template.innerHTML = `
     <style>
-        button {
-            cursor: pointer;
-            background: darkorchid;
-            color: #fff;
-            border: 0;
-            border-radius: 5px;
-            padding: 5px 10px;
-        }
+        @import "src/components/collapsableSection/collapsableSection.css";
     </style>
-    <div><slot name="content"/></div>
-    <button/>
+    <div><slot name="content"></slot></div>
+    <button></button>
 `;
 
 export class CollapsableSection extends HTMLElement {
