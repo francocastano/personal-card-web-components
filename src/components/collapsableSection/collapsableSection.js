@@ -42,7 +42,7 @@ export class CollapsableSection extends HTMLElement {
 
     toggleVisibility() {
         this.visible = !this.visible;
-        this.content.style.display = this.visible ? "block" : "none";
+        this.content.style.visibility = this.visible ? "visible" : "hidden";
         this.button.innerText = this.visible ? this.hideLabel : this.showLabel;
     }
 

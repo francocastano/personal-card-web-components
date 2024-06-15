@@ -1,13 +1,33 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css");
+
 :host {
     background: var(--background-color);
     width: 500px;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-gap: 10px;
+    grid-gap: 0 1em;
     margin-bottom: 15px;
-    border-bottom: var(--accent-color) 5px solid;
+    border: var(--accent-color) 5px solid;
+    border-left: 0;
+    border-radius: 230px;
 }
 
 img {
+    border-radius: 250px;
     width: 100%;
+}
+
+a:-webkit-any-link {
+    text-decoration: none;
+    color: var(--dark-font-color);
+    font-style: normal;
+}
+
+#email {
+    text-decoration: underline;
+}
+
+i {
+    color: var(--accent-color);
+    margin-right: 0.5rem;
 }

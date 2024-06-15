@@ -1,6 +1,8 @@
 :root {
-    --background-color: #FAFAFA;
+    --background-color: #EFEFEF;
     --accent-color: darkorchid;
-    --font-color: #EAEAEA;
+    --dark-font-color: #333;
+    --light-font-color: #FAFAFA;
     font-family: 'Arial', sans-serif;
+    color: var(--dark-font-color);
 }
