@@ -27,68 +27,99 @@ template.innerHTML = `
   </style>
 <div class="user-card">
     <img />
-    <div>
-      <h3></h3>
-      <div class="info">
-        <p><slot name="email" /></p>
-        <p><slot name="phone" /></p>
-      </div>
-      <button id="toggle-info">Hide Info</button>
-    </div>
-  </div>
+    <article>
+        <h3></h3>
+        <section class="info">
+            <div><slot name="email" /></div>
+            <div><slot name="phone" /></div>
+        </section>
+        <button id="toggle-info">Hide Info</button>
+    </article>
+</div>
 `;
 
 class UserCard extends HTMLElement {
+
+    static observedAttributes = ["name", "avatar", "gender"];
+
+    /**
+     * @template T
+     * @param {(T | null | undefined)} value 
+     * @returns {T}
+     */
+    validate(value) {
+        if (!value) {
+            throw new Error("Value is not valid");
+        }
+        return value
+    }
+
     constructor() {
         super();
 
+        this.shadow = this.attachShadow({ mode: 'open' });
+        this.shadow.appendChild(template.content.cloneNode(true));
+
         this.visible = true;
+        this.cardTitle = this.getAttribute('name')
+        this.avatar = this.getAttribute('avatar')
+    }
 
-        this.attachShadow({ mode: 'open' })
+    /**
+     * @returns {HTMLImageElement}
+     */
+    get avatar() {
+        const avatar = this.shadow.querySelector('img');
+        return this.validate(avatar)
+    }
 
-        if (!this.shadowRoot) {
-            throw new Error("Shadow Dom not initialized")
+    /**
+     * @param {(string | null)} value
+     */
+    set avatar(value) {
+        if (!value) {
+            value = `https://randomuser.me/api/portraits/${this.gender}/${Math.floor(Math.random() * 100)}.jpg`
         }
+        this.avatar.src = value
+    }
 
-        this.shadowRoot.appendChild(template.content.cloneNode(true))
+    /**
+     * @returns {string}
+     */
+    get gender() {
+        let gender = this.getAttribute('gender');
+        return this.validate(gender);
+    }
 
-        let title = this.shadowRoot.querySelector('h3')
+    /**
+     * @returns {HTMLElement  }
+     */
+    get info() {
+        let info = this.shadow.querySelector('section');
+        return this.validate(info);
+    }
 
-        if (!title) {
-            throw new Error("Title is not present")
-        }
+    /**
+     * @returns {HTMLButtonElement }
+     */
+    get toggleInfo() {
+        let toggleInfo = this.shadow.querySelector('button');
+        return this.validate(toggleInfo);
+    }
 
-        title.innerText = this.getAttribute('name') || ""
+    /**
+     * @returns {HTMLHeadingElement}
+     */
+    get cardTitle() {
+        let title = this.shadow.querySelector('h3');
+        return this.validate(title);
+    }
 
-        const avatar = this.shadowRoot.querySelector('img')
-
-        if (!avatar) {
-            throw new Error("No img is present in the template")
-        }
-
-        let avatarAttribute = this.getAttribute('avatar')
-        if (!avatarAttribute) {
-            const gender = this.getAttribute('gender')
-            if (!gender) {
-                throw new Error("If no avatar is specified, gender must be defined")
-            }
-            avatarAttribute = `https://randomuser.me/api/portraits/${gender}/${Math.floor(Math.random() * 100)}.jpg`
-        }
-        avatar.src = avatarAttribute
-        const info = this.shadowRoot.querySelector('.info')
-
-        if (!info || !(info instanceof HTMLElement)) {
-            throw new Error("No element with class info is present in the template")
-        }
-        this.info = info
-
-        const toggleInfo = this.shadowRoot.querySelector('#toggle-info')
-
-        if (!toggleInfo || !(toggleInfo instanceof HTMLElement)) {
-            throw new Error("No element with class toggleBtn is present in the template")
-        }
-        this.toggleInfo = toggleInfo
-
+    /**
+     * @param {(string | null)} value
+     */
+    set cardTitle(value) {
+        this.cardTitle.innerText = value || ""
     }
 
     toggleVisibility() {
