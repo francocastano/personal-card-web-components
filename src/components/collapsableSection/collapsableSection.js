@@ -1,14 +1,15 @@
+import styleText from "./collapsableSection.css?raw"
+import htmlTemplate from "./collapsableSection.html?raw"
+
 import { validate } from "../../validations/validations.js";
 
 const template = document.createElement('template')
 template.innerHTML = `
     <style>
-        @import "src/components/collapsableSection/collapsableSection.css";
+        ${styleText}
     </style>
-    <div><slot name="content"></slot></div>
-    <button></button>
+    ${htmlTemplate}
 `;
-
 export class CollapsableSection extends HTMLElement {
     static observedAttributes = ["show-label", "hide-label"];
 

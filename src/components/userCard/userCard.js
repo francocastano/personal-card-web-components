@@ -1,3 +1,6 @@
+import styleText from "./userCard.css?raw"
+import htmlTemplate from "./userCard.html?raw"
+
 import { RandomUserService } from "../../services/index.js";
 import { validate } from "../../validations/validations.js";
 import { User } from "./models.js";
@@ -5,18 +8,9 @@ import { User } from "./models.js";
 const template = document.createElement('template')
 template.innerHTML = `
     <style>
-        @import "src/components/userCard/userCard.css";
+        ${styleText}
     </style>
-    <img/>
-    <section>
-        <h3></h3>
-        <collapsable-section show-label="Show Info" hide-label="Hide Info">
-            <address slot="content">
-                <p><i class="fa-solid fa-envelope"></i></i><a id="email"></p>
-                <p><i class="fa-solid fa-phone"></i><a id="phone"></p>
-            </address>
-        </collapsable-section>
-    </section>
+    ${htmlTemplate}
 `;
 
 export class UserCard extends HTMLElement {
