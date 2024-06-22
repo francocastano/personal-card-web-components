@@ -35,7 +35,7 @@ export class UserCard extends HTMLElement {
     }
 
     configureSaveButton() {
-        const saveButton = this.shadow.querySelector("button");
+        const saveButton = /** @type {HTMLElement} */ (this.shadow.querySelector("custom-button"));
         if (!saveButton) {
             return;
         }

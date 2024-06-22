@@ -22,14 +22,13 @@ export class CollapsableSection extends HTMLElement {
         this.visible = true;
         this.showLabel = this.getAttribute('show-label') || "Show";
         this.hideLabel = this.getAttribute('hide-label') || "Hide";
-        this.button.innerText = this.visible ? this.hideLabel : this.showLabel;
     }
-
+    
     /**
-     * @returns {HTMLButtonElement }
+     * @returns {HTMLElement}
      */
     get button() {
-        let button = this.shadow.querySelector('button');
+        let button = /** @type {HTMLElement} */ (this.shadow.querySelector('custom-button'));
         return validate(button);
     }
 
@@ -48,6 +47,7 @@ export class CollapsableSection extends HTMLElement {
     }
 
     connectedCallback() {
+        this.button.setAttribute("text", this.visible ? this.hideLabel : this.showLabel)
         this.button.addEventListener('click', () => this.toggleVisibility());
     }
 

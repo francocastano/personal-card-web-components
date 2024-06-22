@@ -1,4 +1,4 @@
-import { UserCard, CollapsableSection } from "./components/index.js"
+import { UserCard, CollapsableSection, Button } from "./components/index.js"
 import { RouterProvider, Link } from "./routes/index.js";
 import { MutableContainer } from "./store/index.js";
 
@@ -23,3 +23,4 @@ window.customElements.define('router-link', Link);
 window.customElements.define('router-provider', RouterProvider);
 window.customElements.define('user-card', UserCard);
 window.customElements.define('collapsable-section', CollapsableSection);
+window.customElements.define('custom-button', Button);
