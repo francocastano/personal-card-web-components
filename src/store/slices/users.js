@@ -1,53 +1,28 @@
-export const initialState = {
+import { createSlice } from "https://cdn.jsdelivr.net/npm/@reduxjs/toolkit@2.2.5/+esm"
+
+const initialState = {
     selectedUser: null,
 }
 
-export const name = "users";
-
-export const actions = [
-    "USER_UPDATE",
-    "USER_RESET"
-]
-
-function updateUserReducer(state, action) {
-    if (action.type.localeCompare("USER_UPDATE") !== 0){
-        return state
-    }
-    return {
-        ...state,
-        [name]: {
-            selectedUser: action.payload
+export const userSlice = createSlice({
+    initialState,
+    name: "users",
+    reducers: {
+        updateUserAction(state, action) {
+            return {
+                ...state,
+                selectedUser: action.payload
+            }
+        },
+        resetUserAction(state, action) {
+            return {
+                ...state,
+                selectedUser: null
+            }
         }
     }
-}
+});
 
-function resetUserReducer(state, action) {
-    if (action.type.localeCompare("USER_RESET") !== 0){
-        return state
-    }
-    return {
-        ...state,
-        [name]: {
-            selectedUser: null
-        }
-    }
-}
+export const { updateUserAction, resetUserAction } = userSlice.actions;
 
-export const reducers = [
-    updateUserReducer,
-    resetUserReducer
-];
-
-export function updateUserAction(payload){
-    return {
-        type: "USER_UPDATE",
-        payload: payload
-    }
-}
-
-export function resetUserAction(payload){
-    return {
-        type: "USER_RESET",
-        payload: payload
-    }
-}
+export const { reducer, name } = userSlice;

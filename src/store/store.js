@@ -1,27 +1,8 @@
-import { reducers as userReducers, name as userStateName, initialState as userInitialState } from "./slices/users";
+import { configureStore } from "https://cdn.jsdelivr.net/npm/@reduxjs/toolkit@2.2.5/+esm"
+import { reducer as userReducer, name as userActions } from "./slices/users";
 
-const createStore = (reducers, initialState) => {
-    let state = initialState;
-    let listeners = [];
-    
-    return {
-        getState: () => state,
-        subscribe: (listener) => listeners.push(listener),
-        dispatch: (action) => {
-            state = reducers.reduce((state, reducer) => reducer(state, action), state)
-            for (let listener of listeners){
-                listener();
-            }
-        }
+export const store = configureStore({
+    reducer: {
+        [userActions]: userReducer
     }
-}
-
-const initialState = {
-    [userStateName]: userInitialState
-}
-
-const reducers = [
-    ...userReducers
-]
-
-export const store = createStore(reducers, initialState);
+});
