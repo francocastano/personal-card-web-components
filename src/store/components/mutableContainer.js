@@ -32,6 +32,7 @@ export class MutableContainer extends HTMLElement {
     }
     
     connectedCallback(){
+        this.updateContent()
         store.subscribe(this.updateContent.bind(this));
         const resetButton = this.shadow.querySelector("custom-button")
         if (!resetButton){
